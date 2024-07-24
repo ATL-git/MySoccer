@@ -24,4 +24,6 @@ app.listen(process.env.PORT,(err)=>{
     }
 });
 
+console.log("serveur");
+
 mongoose.connect(process.env.MONGO);
