@@ -1,0 +1,70 @@
+{% extends "../base.twig" %}
+{% block style %}
+	<link rel="stylesheet" href="/assets/css/teamsManager.css">
+{% endblock %}
+{% block main %}
+	<section class="teamsManagement">
+		<button onclick='openModal()' class="addTeamButton">créer une équipe</button>
+
+		<div class="overlay"></div>
+
+		<div class="modal">
+
+			<div class="modal_close" onclick="closeModal()">
+				<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewbox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
+				</svg>
+			</div>
+			<div class="modal_body">
+				<div class="teamCreate">
+					<h2>Création d'équipe</h2>
+					<form action="/teamAdd" method="post">
+						<div>
+							<label for="name">Nom de l'équipe :</label>
+							<input type="text" id="name" name="name">
+						</div>
+						<button type="register">Valider</button>
+					</form>
+				</div>
+			</div>
+		</div>
+
+
+		<h2>Mes équipes</h2>
+
+		{% if teams %}
+			<div class="teamsContain">
+				{% for team in teams %}
+					<div class="teamContainer">
+						<div class="team">
+							<p>équipe :
+								{{ team.name }}</p>
+							<a href="/addPlayer" class="addPlayer">ajouter joueur</a>
+							<a href="/teamDelete/{{ team.id }}" class="teamDelete">supprimer l'équipe</a>
+						</div>
+						<div class="trait"></div>
+						<div class="playerContain">
+							{% if team.players %}
+								{% for player in team.players %}
+									<div>
+										<p>{{ player.name }}</p>
+										<a href="/playerDelete/{{ player.id }}">supprimer</a>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="noPlayer">
+									<p>Aucun joueur ajouté</p>
+								</div>
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+		{% else %}
+			<p class="noTeam">Vous n'avez pas encore créé d'équipe</p>
+		{% endif %}
+	</section>
+{% endblock %}
+{% block script %}
+	<script src="/assets/script/teamsManager.js"></script>
+{% endblock %}

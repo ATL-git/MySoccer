@@ -1,0 +1,32 @@
+{% extends "../base.twig" %}
+{% block style_base %}
+	<link rel="stylesheet" href="/assets/css/login.css">
+{% endblock %}
+{% block header %}
+	<header>
+		<div class="logo">
+			<a href="/dashboard">
+				<img src="./assets/img/logo.png" alt="logo">
+			</a>
+		</div>
+	</header>
+{% endblock %}
+{% block main %}
+	<div class="loginContainer">
+		<h2>Se connecter</h2>
+		<form action="/login" method="post">
+			{% if error %}
+				<p>{{error}}</p>
+			{% endif %}
+
+			<label for="mail">mail :</label>
+			<input type="text" id="mail" name="mail">
+			<label for="password">password :</label>
+			<input type="password" id="password" name="password">
+			<button type="submit">Se connecter</button>
+		</form>
+		<p>Pas encor inscrit ?
+			<a href="/register">Inscrivez-vous</a>
+		</p>
+	</div>
+{% endblock %}

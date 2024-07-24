@@ -1,0 +1,26 @@
+<div class="header-container">
+	<div class="logo">
+		<a href="/dashboard">
+			<img src="./assets/img/logo.png" alt="logo">
+		</a>
+	</div>
+	<div class="nav-menu">
+		<ul>
+			<li>
+				<a href="/teamsManager">Mes équipes</a>
+			</li>
+			<li>
+				<a href="">Réservation</a>
+			</li>
+			{% if user %}
+				<li>
+					<a href="/logout">déconnexion</a>
+				</li>
+			{% else %}
+				<li>
+					<a href="/login">connexion</a>
+				</li>
+			{% endif %}
+		</ul>
+	</div>
+</div>

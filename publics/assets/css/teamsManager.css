@@ -1,0 +1,235 @@
+/* general setting */
+
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+}
+
+main {
+    border-top: 2px solid white;
+    border-bottom: 2px solid white;
+    background-image: url(/assets/img/stadium.jpg);
+    background-size: cover;
+    background-position: center 70%;
+    background-repeat: no-repeat;
+    flex: 1;
+}
+
+
+.teamsManagement h2 {
+    margin-top: 0px;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.addTeamButton {
+    background-color: rgba(58, 146, 36, 0.896796218487395);
+    color: white;
+    margin: 60px;
+    margin-bottom: 0px;
+    border: 1px solid white;
+    width: 220px;
+    padding: 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.noTeam {
+    color: white;
+    font-size: 28px;
+    border: 1px solid white;
+    padding: 30px;
+    border-radius: 8px;
+    background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
+    text-align: center;
+    width: 60%;
+    margin: auto;
+    margin-top: 120px;
+}
+
+/* Modal */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(8, 8, 8, 0.836);
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    border-radius: 6px;
+    padding: 20px;
+    transform: translate(-50%, calc(-100% - 100vh));
+    transition: 0.3s all ease-in-out;
+    z-index: 1;
+    margin: 0;
+    padding: 0;
+    border: 1px solid white;
+    border-radius: 8px;
+}
+
+.modal_close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
+    background-color: red;
+    cursor: pointer;
+    transition: 0.3s all ease-in-out;
+    display: flex;
+}
+
+.modal_close svg {
+    width: 30px;
+    height: 30px;
+
+}
+
+.modalOpen {
+    transform: translate(-50%, -50%);
+
+}
+
+.modal_body {
+    height: 100%;
+}
+
+/* modal container */
+
+.modal_body {
+    background-image: url('/assets/img/terrain.jpg');
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+}
+
+.teamCreate {
+    position: absolute;
+    top: 15%;
+    left: 11%;
+    width: 40%;
+    height: 60%;
+    border: 1px solid white;
+    border-radius: 8px;
+    padding: 20px;
+    background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
+    color: white;
+}
+
+.teamCreate h2{
+    margin-top: 30px;
+}
+
+.teamCreate form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.teamCreate form div {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+.teamCreate form input{
+    padding: 10px;
+    border: none;
+    border-radius: 7px;
+    margin-top: 7px;
+}
+.teamCreate form label{
+    font-size: 24px;
+}
+
+.teamCreate form button {
+    width: 50%;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #106303;
+    border: 0.5px solid white;
+    border-radius: 7px;
+    margin-top: 60px;
+    color: white;
+    cursor: pointer;
+}
+
+/* teamsManagement */
+
+.teamsContain {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.teamContainer {
+    color: white;
+    width: 90%;
+    border: 1px solid white;
+    border-radius: 8px;
+    background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
+    padding: 20px;
+    display: flex;
+    font-size: 22px;
+
+}
+
+.team {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+    width: 17%;
+}
+
+.team a {
+    text-decoration: none;
+    color: white;
+    font-size: 18px;
+}
+
+.trait {
+    background-color: white;
+    width: 2px;
+    margin-left: 60px;
+    margin-right: 60px;
+}
+
+.addPlayer {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+    border-radius: 8px;
+    width: 90%;
+    background-color: rgba(38, 97, 24, 1);
+}
+
+.teamDelete {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid white;
+    background-color: red;
+    border-radius: 8px;
+    width: 90%;
+}

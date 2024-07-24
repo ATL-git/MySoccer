@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+main {
+    border-top: 3px solid white;
+    border-bottom: 3px solid white;
+    background-image: url(/assets/img/terrain.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+header {
+    background-color: #1E6E11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80px;
+}
+
+.logo {
+    width: 240px;
+}
+
+.logo img {
+    width: 100%;
+}
+
+footer {
+    height: 60px;
+    background-color: #1E6E11;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 20px;
+}
+
+.registerContainer {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 15px;
+    width: 50%;
+    background: rgb(38, 97, 24);
+    background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
+    filter: drop-shadow(15px 15px 4px #0800008c);
+}
+
+.inputContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.inputContainer>div {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+.registerContainer h2 {
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.registerContainer div {
+    font-size: 18px;
+    margin: auto;
+
+}
+
+.registerContainer div input {
+    margin-bottom: 20px;
+    margin-top: 8px;
+    padding: 8px;
+    border-radius: 8px;
+    border: none;
+}
+
+.button button {
+    width: 30%;
+    padding: 7px;
+    border-radius: 7px;
+    border: none;
+    cursor: pointer;
+    margin: auto;
+}
+
+.button {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px !important;
+    margin-bottom: 40px !important;
+}
+
+.button button:hover {
+    transform: scale(1.1);
+}
+
+.registerContainer p {
+    text-align: center;
+}
+
+@media(max-width: 760px) {
+    .inputContainer {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    .inputContainer>div {
+        width: 100%;
+
+    }
+
+    .button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .registerContainer {
+        width: 80%;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    footer {
+        font-size: 16px;
+    }
+
+}
