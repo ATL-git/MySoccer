@@ -4,7 +4,7 @@
 {% endblock %}
 {% block main %}
 	<section class="teamsManagement">
-		<button onclick='openModal()' class="addTeamButton">créer une équipe</button>
+		<button onclick='teamAddModal()' class="addTeamButton">créer une équipe</button>
 
 		<div class="overlay"></div>
 
@@ -16,16 +16,6 @@
 				</svg>
 			</div>
 			<div class="modal_body">
-				<div class="teamCreate">
-					<h2>Création d'équipe</h2>
-					<form action="/teamAdd" method="post">
-						<div>
-							<label for="name">Nom de l'équipe :</label>
-							<input type="text" id="name" name="name">
-						</div>
-						<button type="register">Valider</button>
-					</form>
-				</div>
 			</div>
 		</div>
 
@@ -39,7 +29,7 @@
 						<div class="team">
 							<p>équipe :
 								{{ team.name }}</p>
-							<a href="/addPlayer" class="addPlayer">ajouter joueur</a>
+							<button onclick="addPlayer()" class="addPlayer">ajouter joueur</button>
 							<a href="/teamDelete/{{ team.id }}" class="teamDelete">supprimer l'équipe</a>
 						</div>
 						<div class="trait"></div>

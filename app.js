@@ -24,6 +24,8 @@ app.listen(process.env.PORT,(err)=>{
     }
 });
 
-console.log("serveur");
-
 mongoose.connect(process.env.MONGO);
+
+app.get("*" ,(req, res) =>{
+    res.redirect("/dashboard")
+})
