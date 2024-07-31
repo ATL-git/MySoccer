@@ -15,8 +15,7 @@
 					<path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12"/>
 				</svg>
 			</div>
-			<div class="modal_body">
-			</div>
+			<div class="modal_body"></div>
 		</div>
 
 
@@ -27,8 +26,7 @@
 				{% for team in teams %}
 					<div class="teamContainer">
 						<div class="team">
-							<p>équipe :
-								{{ team.name }}</p>
+							<p>{{ team.name }}</p>
 							<button onclick="addPlayer()" class="addPlayer">ajouter joueur</button>
 							<a href="/teamDelete/{{ team.id }}" class="teamDelete">supprimer l'équipe</a>
 						</div>

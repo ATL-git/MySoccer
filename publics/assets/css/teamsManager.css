@@ -121,7 +121,7 @@ main {
     background-repeat: no-repeat;
 }
 
-.teamCreate {
+.containerModalDiv {
     position: absolute;
     top: 15%;
     left: 11%;
@@ -134,34 +134,34 @@ main {
     color: white;
 }
 
-.teamCreate h2{
+.containerModalDiv h2{
     margin-top: 30px;
 }
 
-.teamCreate form {
+.containerModalDiv form {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 60px;
 }
 
-.teamCreate form div {
+.containerModalDiv form div {
     display: flex;
     flex-direction: column;
     width: 80%;
 }
 
-.teamCreate form input{
+.containerModalDiv form input{
     padding: 10px;
     border: none;
     border-radius: 7px;
     margin-top: 7px;
 }
-.teamCreate form label{
+.containerModalDiv form label{
     font-size: 24px;
 }
 
-.teamCreate form button {
+.containerModalDiv form button {
     width: 50%;
     padding: 10px;
     font-size: 18px;
@@ -175,12 +175,13 @@ main {
 
 /* teamsManagement */
 
-.teamsContain {
+.teamsContain
+{
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
 }
 
 .teamContainer {
@@ -195,12 +196,21 @@ main {
 
 }
 
+
+.team button,
+.divBtn button{
+    color: white;
+    font-size: 18px;
+}
+
 .team {
     display: flex;
     align-items: center;
     flex-direction: column;
     gap: 10px;
     width: 17%;
+    padding-left: 30px;
+    padding-right: 50px;
 }
 
 .team a {
@@ -212,17 +222,23 @@ main {
 .trait {
     background-color: white;
     width: 2px;
-    margin-left: 60px;
-    margin-right: 60px;
+   
 }
 
-.addPlayer {
+.noPlayer{
+    margin-left: 50px;
+}
+
+.addPlayer,
+.divBtn button {
     padding: 10px;
     text-align: center;
     border: 1px solid white;
     border-radius: 8px;
-    width: 90%;
+    width: 100%;
     background-color: rgba(38, 97, 24, 1);
+    cursor: pointer;
+    
 }
 
 .teamDelete {
@@ -232,4 +248,13 @@ main {
     background-color: red;
     border-radius: 8px;
     width: 90%;
+    font-family: Arial, Helvetica, sans-serif;
 }
+
+.divBtn{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 80%;
+    margin: auto;
+} 
