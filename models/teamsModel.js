@@ -8,14 +8,11 @@ const teamSchema = new mongoose.Schema({
             return /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(value);
         },
     },
-    users: {
+    users: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: "users",
-        teamRole: {
-            type: String,
-            default: "player",
-        }
-    },
+       
+    }],
 
 })
 

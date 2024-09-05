@@ -25,6 +25,7 @@ usersRouter.post('/register', async (req, res) => {
     }
 })
 
+
 usersRouter.get('/login', (req, res) => {
     res.render('pages/login.twig')
 })

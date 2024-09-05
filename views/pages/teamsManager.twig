@@ -27,16 +27,17 @@
 					<div class="teamContainer">
 						<div class="team">
 							<p>{{ team.name }}</p>
-							<button onclick="addPlayer()" class="addPlayer">ajouter joueur</button>
+							<button onclick="addPlayer('{{ team._id }}')" class="addPlayer">ajouter joueur</button>
 							<a href="/teamDelete/{{ team.id }}" class="teamDelete">supprimer l'équipe</a>
 						</div>
 						<div class="trait"></div>
 						<div class="playerContain">
-							{% if team.players %}
-								{% for player in team.players %}
+							{% if team.users %}
+						
+								{% for player in team.users %}
 									<div>
-										<p>{{ player.name }}</p>
-										<a href="/playerDelete/{{ player.id }}">supprimer</a>
+										<p>{{ player.firstname }}</p>
+										<a href="/playerDelete/{{ player._id }}">supprimer</a>
 									</div>
 								{% endfor %}
 							{% else %}

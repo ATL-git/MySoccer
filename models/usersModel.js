@@ -9,14 +9,14 @@ const userSchema = new mongoose.Schema({
         validate: function (value) {
             return /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(value);
         },
+        default: "yolo", 
     },
     firstname: {
         type: String,
         required: [true, "le prénom est requis"],
         validate: function (value) {
             return /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(value);
-        },
-        default: "yolo",
+        }
     },
     mail: {
         type: String,
@@ -41,10 +41,11 @@ const userSchema = new mongoose.Schema({
         validate: function (value) {
             return /^\d{8,12}$/.test(value);
         },
-       default:"0000000000",
+       default:"0644444444",
     },
     birthDate: {
         type: Date,
+        default : "01/01/2000" ,
     },
     teams: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -54,6 +55,10 @@ const userSchema = new mongoose.Schema({
         type : String ,
         default: "User",
     },
+    teamrole:{
+        type : String , 
+        default : "none"
+    }
 })
 
 userSchema.pre('save', async function (next) {
@@ -62,17 +67,6 @@ userSchema.pre('save', async function (next) {
     }
 })
 
-userSchema.pre("validate", async function (next) {
-    try {
-        const userExisting = await this.constructor.findOne({ mail: this.mail })
-        if (userExisting) {
-            this.invalidate("mail", "Cet email est déjà enregistré")
-        }
-        next()
-    } catch (error) {
-        next(error)
-    }
-})
 
 const usersModel = mongoose.model('users', userSchema);
 module.exports = usersModel;

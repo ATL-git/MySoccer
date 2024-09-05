@@ -258,3 +258,17 @@ main {
     width: 80%;
     margin: auto;
 } 
+
+.playerContain{
+    padding-left: 50px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    gap: 20px;
+}
+
+.playerContain div p{
+    margin: 0;
+    padding: 0;
+}
