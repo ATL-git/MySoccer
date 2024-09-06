@@ -37,7 +37,7 @@
 								{% for player in team.users %}
 									<div>
 										<p>{{ player.firstname }}</p>
-										<a href="/playerDelete/{{ player._id }}">supprimer</a>
+										<a href="/playerDelete/{{ player._id }}/{{team.id}}">supprimer</a>
 									</div>
 								{% endfor %}
 							{% else %}

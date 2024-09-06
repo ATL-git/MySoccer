@@ -4,17 +4,23 @@
 {% endblock %}
 {% block main %}
 	<section class="intro">
+		{% if message %}
+			<div class="acceptMailMessage">
+				<p>{{message}}</p>
+			</div>
+		{% endif %}
+
 		<div>
 			<h2>Foot en salle</h2>
 			<p>MySoccer, c’est d’abord un Foot en Salle qui offre
-																											 aux joueurs la possibilité de jouer sur des terrains
-																											 synthétiques sans remplissage avec une sous couche
-																											 de souplesse pour l’amélioration du confort de jeu.</p>
+																															 aux joueurs la possibilité de jouer sur des terrains
+																															 synthétiques sans remplissage avec une sous couche
+																															 de souplesse pour l’amélioration du confort de jeu.</p>
 
 			<p>Nous fournissons les ballons taille 4 et les chasubles. 
-																											Veuillez noter que pour des raisons de sécurité,
-																											 les joueurs portant des chaussures à crampons ne
-																											 pourront pas accéder aux terrains.</p>
+																															Veuillez noter que pour des raisons de sécurité,
+																															 les joueurs portant des chaussures à crampons ne
+																															 pourront pas accéder aux terrains.</p>
 			<a href="">réserver votre terrain</a>
 		</div>
 	</section>
