@@ -6,9 +6,11 @@
 	</div>
 	<div class="nav-menu">
 		<ul>
-			<li>
-				<a href="/teamsManager">Mes équipes</a>
-			</li>
+			{% if user.role != "Admin" %}
+				<li>
+					<a href="/teamsManager">Mes équipes</a>
+				</li>
+			{% endif %}
 			<li>
 				<a href="">Réservation</a>
 			</li>

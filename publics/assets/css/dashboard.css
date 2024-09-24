@@ -1,4 +1,28 @@
-/* intro foot salle */
+.errorMessage {
+    background-color: red;
+    text-align: center;
+    color: white;
+    border-top: 2px solid white;
+}
+
+.errorMessage p {
+    padding: 20px;
+    margin: 0;
+    font-size: 40px;
+}
+
+.Message {
+    background-color: red;
+    text-align: center;
+    color: white;
+    border-top: 2px solid white;
+}
+
+.Message p {
+    padding: 20px;
+    margin: 0;
+    font-size: 40px;
+}
 
 .intro {
     background-image: url(/assets/img/soccerball.jpg);
@@ -38,46 +62,42 @@
     background-color: white;
     border: 1px solid black;
     border-radius: 8px;
-    
+
 }
 
-
-/* section accordeon */
-
-
-.gallery-container{
+.gallery-container {
     margin: auto;
     top: 0;
     bottom: 0;
     display: flex;
     flex-direction: row;
     width: 98%;
-   height: 40vh;
-   border: 1px solid white;
+    height: 40vh;
+    border: 1px solid white;
 }
 
-.item{
+.item {
     height: 100%;
     cursor: pointer;
     position: relative;
 }
 
-.soccerField{
+.soccerField {
     text-align: center;
     background: rgb(38, 97, 24);
     background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
     padding-bottom: 2%;
 }
 
-.soccerField h2{
+.soccerField h2 {
     color: white;
     margin: 0;
     padding-top: 60px;
-   padding-bottom: 60px;
-   font-size: 28px;
+    padding-bottom: 60px;
+    font-size: 28px;
 }
 
-.filtreImg{
+.filtreImg {
     background-color: rgba(0, 0, 0, 0.656);
     position: absolute;
     top: 0;
@@ -93,13 +113,13 @@
     cursor: initial;
 }
 
-.textFiltre{
+.textFiltre {
     color: white;
     font-size: 20px;
     margin: 0;
 }
 
-.filtreImgOver{
+.filtreImgOver {
     background-color: rgba(0, 0, 0, 0.656);
     position: absolute;
     top: 0;
@@ -114,33 +134,31 @@
     font-size: 16px;
 }
 
-/* section price */
-
-.priceContainer{
+.priceContainer {
     display: flex;
     justify-content: space-evenly;
-   
+
 }
 
-.priceTable{
+.priceTable {
     text-align: center;
     border: 1px solid white;
     border-radius: 8px;
     background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
     width: 17%;
-    padding-top:30px ;
+    padding-top: 30px;
     padding-bottom: 30px;
     margin-bottom: 60px;
     box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
 }
 
-.priceTable p{
+.priceTable p {
     margin: 0;
     color: white;
     font-size: 20px;
 }
 
-.trait{
+.trait {
     margin: auto;
     width: 80%;
     background-color: white;
@@ -149,23 +167,25 @@
     margin-bottom: 30px;
 }
 
-.price h2{
+.price h2 {
     text-align: center;
     padding-top: 60px;
     padding-bottom: 60px;
     font-size: 28px;
 }
-.priceText{
-    font-size: 36px!important;
+
+.priceText {
+    font-size: 36px !important;
 }
 
 
-@media (max-width : 960px){
-    .intro{
+@media (max-width : 960px) {
+    .intro {
         justify-content: center;
         max-height: auto;
     }
-    .intro div{
+
+    .intro div {
         width: 70%;
 
         margin: 0;
@@ -177,23 +197,23 @@
         font-size: 18px;
     }
 
-    .intro button{
+    .intro button {
         margin-bottom: 40px;
     }
 
-    .priceContainer{
+    .priceContainer {
         flex-direction: column;
-    
+
     }
 
-    .priceTable{
+    .priceTable {
         width: 80%;
         margin: auto;
         margin-bottom: 40px;
     }
 
-    .gallery-container{
-        flex-direction: column ;
+    .gallery-container {
+        flex-direction: column;
         height: auto;
 
     }
@@ -202,5 +222,5 @@
         font-size: 18px;
     }
 
-    
+
 }

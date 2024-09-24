@@ -12,6 +12,16 @@
 	</header>
 {% endblock %}
 {% block main %}
+{% if error %}
+		<div class="errorMessage">
+			<p>{{error.message}}</p>
+		</div>
+	{% endif %}
+	{% if message %}
+		<div class="Message">
+			<p>{{message}}</p>
+		</div>
+	{% endif %}
 	<div class="registerContainer">
 		<h2>Inscription</h2>
 		<form action="/register" method="post">

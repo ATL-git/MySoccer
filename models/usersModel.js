@@ -9,7 +9,7 @@ const userSchema = new mongoose.Schema({
         validate: function (value) {
             return /^[A-Za-zÀ-ÖØ-öø-ÿ\s]+$/.test(value);
         },
-        default: "yolo", 
+        default: "botPlayer", 
     },
     firstname: {
         type: String,

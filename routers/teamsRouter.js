@@ -24,9 +24,11 @@ teamsRouter.get('/teamsManager', authGuard, async (req, res) => {
 teamsRouter.post('/teamAdd', authGuard, async (req, res) => {
     try {
         const newteam = new teamsModel(req.body)
+        const userConnected = await usersModel.findOne({ _id: req.session.user._id })
         newteam.validateSync()
         await newteam.save()
         await usersModel.updateOne({ _id: req.session.user._id }, { $push: { teams: newteam._id } })
+        await teamsModel.updateOne({ _id: newteam._id }, { $push: { users: userConnected } })
         res.redirect("/teamsManager")
     } catch (error) {
         res.render("pages/teamsManager.twig", {
@@ -44,7 +46,7 @@ teamsRouter.get("/teamdelete/:teamid", authGuard, async (req, res) => {
     } catch (error) {
         console.log(error.message);
         res.render("pages/teamsManager.twig", {
-            errorMessage: "Un probleme est survenu pendant la suppression",
+            error: "Un probleme est survenu pendant la suppression",
             user: await userModel
                 .findById(req.session.user)
                 .populate("teams"),
@@ -54,7 +56,7 @@ teamsRouter.get("/teamdelete/:teamid", authGuard, async (req, res) => {
 });
 
 teamsRouter.post("/invitPlayer", authGuard, async (req, res) => {
-   
+
     try {
         const nameAdmin = req.session.user.firstname;
         const teamId = req.body.teamId;
@@ -63,16 +65,16 @@ teamsRouter.post("/invitPlayer", authGuard, async (req, res) => {
         if (!user) {
             return res.render("pages/teamsManager.twig", {
                 user: req.session.user,
-                errorMessage: "Utilisateur non trouvé avec cet email",
+                error: "Utilisateur non trouvé avec cet email",
             });
 
         }
 
-        
+
         const token = jwt.sign({
             userId: user._id,
             teamId: teamId
-        }, process.env.TOKEN_MAIL_PASS, { expiresIn: '2h' });
+        }, process.env.TOKEN_MAIL_PASS, { expiresIn: '48h' });
 
         const mailOptions = {
             from: 'no-reply@mySoccer.com',
@@ -81,7 +83,7 @@ teamsRouter.post("/invitPlayer", authGuard, async (req, res) => {
             html: `<p>Veuillez cliquer sur le lien suivant pour accepter l'invitation de ${nameAdmin} : <a href='http://localhost:3000/acceptMailInvite/${token}'>Cliquez ici</a></p>`
         };
 
-    
+
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -95,7 +97,7 @@ teamsRouter.post("/invitPlayer", authGuard, async (req, res) => {
                 console.log(error);
                 return res.render("pages/teamsManager.twig", {
                     user: req.session.user,
-                    errorMessage: "Une erreur est survenue lors de l'envoi de l'email",
+                    error: "Une erreur est survenue lors de l'envoi de l'email",
                 });
             } else {
                 console.log("Email envoyé avec succès !");
@@ -105,28 +107,31 @@ teamsRouter.post("/invitPlayer", authGuard, async (req, res) => {
                 });
             }
         });
+
+        res.redirect("/teamsManager")
+
     } catch (err) {
         console.log(err);
         return res.render("pages/teamsManager.twig", {
             user: req.session.user,
-            errorMessage: "Une erreur s'est produite lors du traitement de la requête",
+            error: "Une erreur s'est produite lors du traitement de la requête",
         });
     }
 });
 
-teamsRouter.get('/acceptMailInvite/:token' , authGuard , async (req,res) => {
+teamsRouter.get('/acceptMailInvite/:token', authGuard, async (req, res) => {
     try {
-      
+
         const decoded = jwt.verify(req.params.token, process.env.TOKEN_MAIL_PASS);
         const user = await usersModel.findById(decoded.userId);
 
         if (!user) {
             throw new Error('Utilisateur non trouvé.');
         }
-       
+
         await teamsModel.updateOne(
             { _id: decoded.teamId },
-            { $addToSet: { users: user._id } }  // $addToSet évite les doublons
+            { $addToSet: { users: user._id } }
         );
         res.render('pages/dashboard.twig', {
             message: 'Invitation acceptée , vous avez etait ajouté à l\'équipe avec succès !'
@@ -134,7 +139,7 @@ teamsRouter.get('/acceptMailInvite/:token' , authGuard , async (req,res) => {
     } catch (error) {
         console.log(error.message);
         res.render('pages/teamsManager.twig', {
-            errorMessage: 'Une erreur est survenue lors de l\'acceptation de l\'invitation.',
+            error: 'Une erreur est survenue lors de l\'acceptation de l\'invitation.',
             details: error.message
         });
     }
@@ -146,7 +151,7 @@ teamsRouter.post('/createPlayer', authGuard, async (req, res) => {
         const { firstname, teamId } = req.body;
         const newPlayer = new usersModel({
             firstname: firstname,
-            teamrole: "player",
+            role: "player",
         })
         newPlayer.validateSync()
         await newPlayer.save()
@@ -154,7 +159,6 @@ teamsRouter.post('/createPlayer', authGuard, async (req, res) => {
         res.redirect("/teamsManager")
 
     } catch (error) {
-        console.log(error);
         res.render('pages/teamsManager.twig', {
             error: error.message,
         });
@@ -165,15 +169,20 @@ teamsRouter.get('/playerDelete/:playerid/:teamid', authGuard, async (req, res) =
     try {
         const playerId = req.params.playerid;
         const teamId = req.params.teamid;
+        const userDelete = await usersModel.findOne({ _id: playerId })
 
-        await usersModel.deleteOne({ _id: playerId});
-        await teamsModel.updateOne({ _id: teamId }, { $pull: { users: playerId } })
-        
+        if (userDelete.name === "botPlayer" && userDelete.role === "player") {
+            await usersModel.deleteOne({ _id: playerId });
+            await teamsModel.updateOne({ _id: teamId }, { $pull: { users: playerId } })
+
+        } else {
+            await teamsModel.updateOne({ _id: teamId }, { $pull: { users: playerId } })
+        }
+
         res.redirect("/teamsManager");
     } catch (error) {
-        console.log(error.message);
         res.render("pages/teamsManager.twig", {
-            errorMessage: "Un probleme est survenu pendant la suppression",
+            error: "Un probleme est survenu pendant la suppression",
         });
     }
 })
