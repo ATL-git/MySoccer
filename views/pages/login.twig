@@ -12,29 +12,21 @@
 	</header>
 {% endblock %}
 {% block main %}
-{% if error %}
-		<div class="errorMessage">
-			<p>{{error.message}}</p>
-		</div>
-	{% endif %}
-	{% if message %}
-		<div class="Message">
-			<p>{{message}}</p>
-		</div>
-	{% endif %}
+
 	<div class="loginContainer">
 		<h2>Se connecter</h2>
 		<form action="/login" method="post">
-			{% if error %}
-				<p>{{error}}</p>
-			{% endif %}
-
 			<label for="mail">mail :</label>
 			<input type="email" id="mail" name="mail">
 			<label for="password">password :</label>
 			<input type="password" id="password" name="password">
 			<button type="submit">Se connecter</button>
 		</form>
+		{% if error %}
+			<div class="errorMessage">
+				<p>{{error}}</p>
+			</div>
+		{% endif %}
 		<p>Pas encor inscrit ?
 			<a href="/register">Inscrivez-vous</a>
 		</p>

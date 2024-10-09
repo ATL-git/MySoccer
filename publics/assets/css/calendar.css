@@ -1,0 +1,34 @@
+main{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+#calendars {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    height: 100vh; /* Assure que le conteneur prend toute la hauteur de la fenêtre */
+}
+
+.calendar {
+    min-width: 95vw;
+    margin: 30px 15px; /* Simplifie les marges */
+    padding: 15px;
+    border: 0.5px solid black;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+
+.SelectTerrain{
+display: flex;
+justify-content: center;
+margin-top: 30px;
+font-size: 20px;
+}
+
+#terrain-select{
+    font-size: 15px;
+}

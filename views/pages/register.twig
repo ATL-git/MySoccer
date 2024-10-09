@@ -12,23 +12,9 @@
 	</header>
 {% endblock %}
 {% block main %}
-{% if error %}
-		<div class="errorMessage">
-			<p>{{error.message}}</p>
-		</div>
-	{% endif %}
-	{% if message %}
-		<div class="Message">
-			<p>{{message}}</p>
-		</div>
-	{% endif %}
 	<div class="registerContainer">
 		<h2>Inscription</h2>
 		<form action="/register" method="post">
-		{% if error %}
-		<p>{{error}}</p>
-		{% endif %}
-		
 			<div class="inputContainer">
 				<div>
 					<label for="name">nom :</label>
@@ -38,20 +24,23 @@
 					<label for="mail">mail :</label>
 					<input type="email" id="mail" name="mail">
 				</div>
-
 				<div>
 					<label for="password">password :</label>
 					<input type="text" id="password" name="password">
 					<label for="phone">numéro de téléphone :</label>
 					<input type="number" id="phone" name="phone">
 					<label for="birthDate">date de naissance :</label>
-					<input type="date" id="birthDate" name="birthDate" >
+					<input type="date" id="birthDate" name="birthDate">
 				</div>
 			</div>
+			{% if error %}
+				<p class="errorMessage">{{error}}</p>
+			{% endif %}
 			<div class="button">
 				<button type="submit">S'enregistrer</button>
 			</div>
 		</form>
+
 		<p>Déjà inscrit ?
 			<a href="/login">se connecter</a>
 		</p>

@@ -1,0 +1,29 @@
+{% extends "../base.twig" %}
+{% block style %}
+	<link rel="stylesheet" href="fullcalendar/daygrid/main.css">
+	<link rel="stylesheet" href="/assets/css/calendar.css">
+{% endblock %}
+{% block main %}
+	<div class="SelectTerrain">
+		<label for="terrain-select">Choisissez un terrain :</label>
+		<select id="terrain-select">
+			<option value="terrain1">Indoor 5x5</option>
+			<option value="terrain2">Indoor 6x6</option>
+			<option value="terrain3">Outdoor 5x5</option>
+			<option value="terrain4">Outdoor 6x6</option>
+		</select>
+	</div>
+
+	<div id="calendars">
+		<div id="calendar-terrain1" class="calendar"></div>
+		<div id="calendar-terrain2" class="calendar"></div>
+		<div id="calendar-terrain3" class="calendar"></div>
+		<div id="calendar-terrain4" class="calendar"></div>
+	</div>
+
+{% endblock %}
+{% block script %}
+	<script src='https://cdn.jsdelivr.net/npm/fullcalendar/index.global.min.js'></script>
+	<script src="/assets/script/calendar.js"></script>
+
+{% endblock %}

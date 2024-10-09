@@ -1,14 +1,7 @@
 .errorMessage {
-    background-color: red;
     text-align: center;
-    color: white;
-    border-top: 2px solid white;
-}
-
-.errorMessage p {
-    padding: 20px;
-    margin: 0;
-    font-size: 40px;
+    color: red;
+    font-size: 20px;
 }
 
 body {
