@@ -1,15 +1,9 @@
-main{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    min-height: 100vh;
-}
 
 #calendars {
     display: flex;
     align-items: center;
     overflow: hidden;
-    height: 100vh; /* Assure que le conteneur prend toute la hauteur de la fenêtre */
+    
 }
 
 .calendar {
@@ -32,3 +26,12 @@ font-size: 20px;
 #terrain-select{
     font-size: 15px;
 }
+
+#calendar-container {
+    height: auto;
+    overflow: auto;
+  }
+
+.fc .fc-timegrid-slot {
+    height: 50px;
+  }

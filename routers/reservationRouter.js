@@ -6,17 +6,14 @@ const authGuard = require('../middleware/authguard');
 
 reservationRouter.get('/calendar', authGuard, (req, res) => {
     res.render('pages/calendar.twig',{
-        user : req.session.user
+        user : req.session.user,
     })
 })
 
 reservationRouter.post('/reserve', authGuard, async (req, res) => {
    
     const { terrainId, start, end, title } = req.body;
-   // Vérifiez que les données existent
-   if (!terrainId || !start || !end || !title) {
-    return res.status(400).json({ message: 'Tous les champs sont requis.' });
-}
+   
     try {
         const reservation = new reservationModel({
             terrainId,
@@ -37,29 +34,43 @@ reservationRouter.post('/reserve', authGuard, async (req, res) => {
 reservationRouter.get('/getReservations', authGuard, async (req, res) => {
     try {
         const userId = req.session.user._id;
-        
-        // Utiliser reservationModel pour obtenir les réservations
-        const reservations = await reservationModel.find().populate('userId', 'name firstname mail'); // Assurez-vous d'utiliser reservationModel ici
-
-        const formattedReservations = reservations.map(reservation => ({
+        const reservationUser = await reservationModel.find().populate('userId', 'name firstname mail');
+        const Reservations = reservationUser.map(reservation => ({
             id: reservation._id,
-            terrainId: reservation.terrainId,  // Assurez-vous d'inclure l'ID du terrain
+            terrainId: reservation.terrainId, 
             start: reservation.start,
             end: reservation.end,
             title: reservation.title,
             user: {
-                name: reservation.userId.name, // Accéder à l'utilisateur peuplé
+                name: reservation.userId.name,
                 firstname: reservation.userId.firstname,
                 mail: reservation.userId.mail
             },
-            color: reservation.userId._id.toString() === userId.toString() ? 'green' : 'red' // Couleur en fonction de l'utilisateur
+            color: reservation.userId._id.toString() === userId.toString() ? 'green' : 'red'
         }));
 
-        res.json(formattedReservations);
+        res.json(Reservations);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Une erreur est survenue lors de la récupération des réservations.' });
     }
+});
+
+reservationRouter.delete('/deleteReservation/:id', authGuard, async (req, res) => {
+    const reservationId = req.params.id;
+    try {
+        await reservationModel.findByIdAndDelete(reservationId);
+        res.json({ message: 'Réservation supprimée avec succès.' });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Une erreur est survenue lors de la suppression de la réservation.' });
+    }
+});
+
+reservationRouter.get('/getUser',authGuard, (req, res) => {
+   
+    const user = req.session.user;
+    res.json({ user: user });
 });
 
 
