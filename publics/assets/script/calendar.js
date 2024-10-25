@@ -48,10 +48,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         })
                         .then(data => {
                             if (data.message) {
+                                // Déterminer la couleur de l'événement en fonction du rôle de l'utilisateur
+                                const eventColor = user.role === 'Admin' ? 'red' : 'green';
                                 calendar.addEvent({
                                     start: info.start,
                                     end: info.end,
-                                    color: 'green',
+                                    color: eventColor, // Couleur définie ici
                                     rendering: 'inverse-background',
                                     allDay: false,
                                     title: reservationData.title
