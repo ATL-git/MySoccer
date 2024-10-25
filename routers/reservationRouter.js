@@ -49,9 +49,9 @@ reservationRouter.get('/getReservations', authGuard, async (req, res) => {
                 user: {
                     name: reservation.userId.name,
                     firstname: reservation.userId.firstname,
-                    mail: reservation.userId.mail
+                    mail: reservation.userId.mail,
+                    role: reservation.userId.role,
                 },
-                // Logique de couleur :
                 color: isAdmin ? 'red' : (isUser ? 'green' : 'blue')
             };
         });
