@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             start: reservation.start,
                             end: reservation.end,
                             title: reservation.title,
-                            color: reservation.color,
+                            color: reservation.color, // Couleur définie par le routeur
                         });
                     }
                 });
