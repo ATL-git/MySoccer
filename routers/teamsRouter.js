@@ -25,6 +25,13 @@ teamsRouter.post('/teamAdd', authGuard, async (req, res) => {
     try {
         const newteam = new teamsModel(req.body)
         const userConnected = await usersModel.findOne({ _id: req.session.user._id })
+        if (userConnected.teams.length >= 3) {
+             return res.render("pages/teamsManager.twig", {
+                user: req.session.user,
+                teams: await usersModel.findById(req.session.user._id).populate("teams"),
+                error: "Vous ne pouvez pas créer plus de 3 équipes.",
+            });
+        }
         newteam.validateSync()
         await newteam.save()
         await usersModel.updateOne({ _id: req.session.user._id }, { $push: { teams: newteam._id } })
@@ -34,6 +41,7 @@ teamsRouter.post('/teamAdd', authGuard, async (req, res) => {
         res.render("pages/teamsManager.twig", {
             user: req.session.user,
             error: error.message,
+            teams: teams.teams,
         })
     }
 })
@@ -50,7 +58,7 @@ teamsRouter.get("/teamdelete/:teamid", authGuard, async (req, res) => {
             user: await userModel
                 .findById(req.session.user)
                 .populate("teams"),
-
+            teams: teams.teams,
         });
     }
 });
@@ -61,16 +69,12 @@ teamsRouter.post("/invitPlayer", authGuard, async (req, res) => {
         const nameAdmin = req.session.user.firstname;
         const teamId = req.body.teamId;
         const user = await usersModel.findOne({ mail: req.body.mail });
-
         if (!user) {
             return res.render("pages/teamsManager.twig", {
                 user: req.session.user,
                 error: "Utilisateur non trouvé avec cet email",
             });
-
         }
-
-
         const token = jwt.sign({
             userId: user._id,
             teamId: teamId
@@ -82,8 +86,6 @@ teamsRouter.post("/invitPlayer", authGuard, async (req, res) => {
             subject: 'Invitation pour MySoccer',
             html: `<p>Veuillez cliquer sur le lien suivant pour accepter l'invitation de ${nameAdmin} : <a href='http://localhost:3000/acceptMailInvite/${token}'>Cliquez ici</a></p>`
         };
-
-
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
@@ -149,6 +151,17 @@ teamsRouter.post('/createPlayer', authGuard, async (req, res) => {
     try {
 
         const { firstname, teamId } = req.body;
+        const team = await teamsModel.findById(teamId).populate("users");
+        if (team.users.length >= 16) {
+            return res.render('pages/teamsManager.twig', {
+                error: "les équipe ne peuvent pas avoir plus de 16 joueurs.",
+                user: req.session.user,
+                teams: await usersModel.findById(req.session.user._id).populate({
+                    path: "teams",
+                    populate: { path: "users" }
+                })
+            });
+        }
         const newPlayer = new usersModel({
             firstname: firstname,
             role: "player",

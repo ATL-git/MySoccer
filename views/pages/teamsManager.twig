@@ -3,9 +3,9 @@
 	<link rel="stylesheet" href="/assets/css/teamsManager.css">
 {% endblock %}
 {% block main %}
-{% if error %}
+	{% if error %}
 		<div class="errorMessage">
-			<p>{{error.message}}</p>
+			<p>{{error}}</p>
 		</div>
 	{% endif %}
 	{% if message %}
@@ -43,11 +43,10 @@
 						<div class="trait"></div>
 						<div class="playerContain">
 							{% if team.users %}
-						
 								{% for player in team.users %}
-									<div>
+									<div class="playerBox">
 										<p>{{ player.firstname }}</p>
-										<a href="/playerDelete/{{ player._id }}/{{team.id}}">supprimer</a>
+										<a href="/playerDelete/{{ player._id }}/{{ team.id }}" class="playerDelete">supprimer</a>
 									</div>
 								{% endfor %}
 							{% else %}
