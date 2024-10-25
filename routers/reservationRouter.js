@@ -37,7 +37,7 @@ reservationRouter.get('/getReservations', authGuard, async (req, res) => {
         const reservationUser = await reservationModel.find().populate('userId', 'name firstname mail role');
 
         const Reservations = reservationUser.map(reservation => {
-            const isAdmin = reservation.userId.role === 'Admin'; // Vérifie si c'est un Admin
+            const isAdmin = reservation.userId.role === 'Admin';
             const isUser = reservation.userId._id.toString() === userId.toString();
 
             return {

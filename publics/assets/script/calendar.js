@@ -25,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function () {
                 slotMaxTime: '23:00:00',
                 slotDuration: '01:00:00',
                 select: function (info) {
-                    const reservationTitle = user.role === 'Admin' ? 'Bloqué' : `Réservé par ${user.firstname}`;
+                    const reservationTitle = user.role === 'Admin' ? 'réservation impossible' : `Réservé par ${user.firstname}`;
                     const reservationData = {
                         terrainId: terrain,
                         start: info.startStr,
                         end: info.endStr,
-                        title: `Réservé par ${user.firstname}`
+                        title: reservationTitle
                     };
                     if (confirm(`Voulez-vous vraiment réserver de ${info.start.toLocaleString()} à ${info.end.toLocaleString()} ?`)) {
                         fetch('http://aurelien-maureau.ri7.tech:83/reserve', {
