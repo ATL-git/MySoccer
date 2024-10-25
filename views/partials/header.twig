@@ -8,19 +8,19 @@
 		<ul>
 			{% if user.role != "Admin" %}
 				<li>
-					<a href="/teamsManager">Mes équipes</a>
+					<a class="headerLink" href="/teamsManager">Mes équipes</a>
 				</li>
 			{% endif %}
 			<li>
-				<a href="/calendar">Réservation</a>
+				<a class="headerLink" href="/calendar">Réservation</a>
 			</li>
 			{% if user %}
 				<li>
-					<a href="/logout">déconnexion</a>
+					<a class="headerLink" href="/logout">Déconnexion</a>
 				</li>
 			{% else %}
 				<li>
-					<a href="/login">connexion</a>
+					<a class="headerLink" href="/login">Connexion</a>
 				</li>
 			{% endif %}
 		</ul>

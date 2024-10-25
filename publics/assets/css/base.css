@@ -40,11 +40,16 @@ header {
     gap: 80px;
 }
 
-.nav-menu a{
+
+.nav-menu a {
     text-decoration: none;
     color: white;
     font-size: 24px;
     cursor: pointer;
+}
+
+.nav-menu ul li a:hover{
+    filter: drop-shadow(-3px 4px 11px #eeeef1);
 }
 
 footer {
@@ -89,7 +94,7 @@ footer {
         margin-bottom: 5px;
     }
 
-    footer{
+    footer {
         font-size: 16px;
     }
 }
@@ -112,7 +117,7 @@ footer {
         font-size: 14px;
     }
 
-    footer{
+    footer {
         font-size: 16px;
     }
 }

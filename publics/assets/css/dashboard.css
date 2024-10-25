@@ -54,7 +54,7 @@
 
 }
 
-.intro a {
+.calendarLink {
     text-decoration: none;
     color: black;
     font-size: 18px;
@@ -62,7 +62,13 @@
     background-color: white;
     border: 1px solid black;
     border-radius: 8px;
+    transition: background-color 1.4s ease, color 0.8s ease, border-color 0.8s ease;
+}
 
+.calendarLink:hover {
+    background-color: rgba(0, 128, 0, 0.351);
+    color: white;
+    border-color: white;
 }
 
 .gallery-container {
