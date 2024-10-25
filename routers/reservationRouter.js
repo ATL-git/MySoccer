@@ -34,20 +34,27 @@ reservationRouter.post('/reserve', authGuard, async (req, res) => {
 reservationRouter.get('/getReservations', authGuard, async (req, res) => {
     try {
         const userId = req.session.user._id;
-        const reservationUser = await reservationModel.find().populate('userId', 'name firstname mail');
-        const Reservations = reservationUser.map(reservation => ({
-            id: reservation._id,
-            terrainId: reservation.terrainId, 
-            start: reservation.start,
-            end: reservation.end,
-            title: reservation.title,
-            user: {
-                name: reservation.userId.name,
-                firstname: reservation.userId.firstname,
-                mail: reservation.userId.mail
-            },
-            color: reservation.userId._id.toString() === userId.toString() ? 'green' : 'red'
-        }));
+        const reservationUser = await reservationModel.find().populate('userId', 'name firstname mail role');
+
+        const Reservations = reservationUser.map(reservation => {
+            const isAdmin = reservation.userId.role === 'Admin'; // Vérifie si c'est un Admin
+            const isUser = reservation.userId._id.toString() === userId.toString();
+
+            return {
+                id: reservation._id,
+                terrainId: reservation.terrainId,
+                start: reservation.start,
+                end: reservation.end,
+                title: reservation.title,
+                user: {
+                    name: reservation.userId.name,
+                    firstname: reservation.userId.firstname,
+                    mail: reservation.userId.mail
+                },
+                // Logique de couleur :
+                color: isAdmin ? 'red' : (isUser ? 'green' : 'blue') // Rouge pour admin, vert pour l'utilisateur, bleu pour les autres
+            };
+        });
 
         res.json(Reservations);
     } catch (error) {
@@ -55,6 +62,7 @@ reservationRouter.get('/getReservations', authGuard, async (req, res) => {
         res.status(500).json({ error: 'Une erreur est survenue lors de la récupération des réservations.' });
     }
 });
+
 
 reservationRouter.delete('/deleteReservation/:id', authGuard, async (req, res) => {
     const reservationId = req.params.id;

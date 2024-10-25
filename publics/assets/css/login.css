@@ -108,6 +108,11 @@ footer {
     margin-top: 15px;
     margin-bottom: 15px;
     cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+
+.loginContainer form button:hover{
+    box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
 .loginContainer p {

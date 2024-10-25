@@ -57,8 +57,6 @@ usersRouter.get('/dashboard', (req, res) => {
     })
 })
 
-
-
 usersRouter.get('/logout', (req, res) => {
     req.session.destroy()
     res.redirect('/dashboard')

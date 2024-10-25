@@ -1,12 +1,13 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var Calendar = FullCalendar.Calendar;
-    var calendars = {};
-    var terrainIds = ['terrain1', 'terrain2', 'terrain3', 'terrain4'];
+    const Calendar = FullCalendar.Calendar;
+    const calendars = {};
+    const terrainIds = ['terrain1', 'terrain2', 'terrain3', 'terrain4'];
+    let user;
 
     function initializeCalendars() {
         terrainIds.forEach(function (terrain) {
-            var calendarEl = document.getElementById(`calendar-${terrain}`);
-            var calendar = new Calendar(calendarEl, {
+            const calendarEl = document.getElementById(`calendar-${terrain}`);
+            const calendar = new Calendar(calendarEl, {
                 locale: 'fr',
                 headerToolbar: {
                     left: 'prev,next today',
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 },
                 initialView: 'timeGridWeek',
                 selectable: true,
-                height:'auto',
+                height: 'auto',
                 editable: false,
                 firstDay: 1,
                 expandRows: true,
@@ -24,16 +25,15 @@ document.addEventListener('DOMContentLoaded', function () {
                 slotMaxTime: '23:00:00',
                 slotDuration: '01:00:00',
                 select: function (info) {
-                   
+                    const reservationTitle = user.role === 'Admin' ? 'Bloqué' : `Réservé par ${user.firstname}`;
                     const reservationData = {
                         terrainId: terrain,
                         start: info.startStr,
                         end: info.endStr,
                         title: `Réservé par ${user.firstname}`
                     };
-                
                     if (confirm(`Voulez-vous vraiment réserver de ${info.start.toLocaleString()} à ${info.end.toLocaleString()} ?`)) {
-                        fetch('http://localhost:3000/reserve', {
+                        fetch('http://aurelien-maureau.ri7.tech:83/reserve', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
@@ -48,7 +48,6 @@ document.addEventListener('DOMContentLoaded', function () {
                         })
                         .then(data => {
                             if (data.message) {
-                             
                                 calendar.addEvent({
                                     start: info.start,
                                     end: info.end,
@@ -67,11 +66,10 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 },
                 eventContent: function (resa) {
-                    let eventElement = document.createElement('div');
+                    const eventElement = document.createElement('div');
                     eventElement.innerHTML = `<b>${resa.event.title}</b>`;
-
                     if (user.role === 'Admin') {
-                        let deleteButton = document.createElement('button');
+                        const deleteButton = document.createElement('button');
                         deleteButton.innerHTML = 'Supprimer';
                         deleteButton.classList.add('delete-btn');
                         deleteButton.addEventListener('click', function () {
@@ -79,22 +77,19 @@ document.addEventListener('DOMContentLoaded', function () {
                                 deleteReservation(resa.event.id);
                             }
                         });
-
                         eventElement.appendChild(deleteButton);
                     }
                     return { domNodes: [eventElement] };
                 }
             });
-
             calendars[terrain] = calendar;
             calendar.render();
             loadReservations(terrain);
         });
     }
 
-    
     function loadReservations(terrain) {
-        fetch(`http://localhost:3000/getReservations`)
+        fetch(`http://aurelien-maureau.ri7.tech:83/getReservations`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Erreur réseau lors du chargement des réservations');
@@ -119,9 +114,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-
     function deleteReservation(reservationId) {
-        fetch(`http://localhost:3000/deleteReservation/${reservationId}`, {
+        fetch(`http://aurelien-maureau.ri7.tech:83/deleteReservation/${reservationId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -148,7 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    fetch('http://localhost:3000/getUser')
+    fetch('http://aurelien-maureau.ri7.tech:83/getUser')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erreur réseau lors de la récupération du rôle');
@@ -163,19 +157,23 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Erreur lors de la récupération du rôle de l\'utilisateur:', error);
         });
 
-    // Gestion du changement de terrain
-    var terrainSelect = document.getElementById('terrain-select');
+  
+    const terrainSelect = document.getElementById('terrain-select');
     terrainSelect.addEventListener('change', function () {
-        var selectedTerrain = terrainSelect.value;
+        const selectedTerrain = terrainSelect.value;
         terrainIds.forEach(function (terrain) {
-            var calendarDiv = document.getElementById(`calendar-${terrain}`);
-            calendarDiv.style.display = (terrain === selectedTerrain) ? 'block' : 'none';
+            const calendarDiv = document.getElementById(`calendar-${terrain}`);
+            if (terrain === selectedTerrain) {
+                calendarDiv.style.display = 'block';
+                calendars[terrain].updateSize();
+            } else {
+                calendarDiv.style.display = 'none';
+            }
         });
     });
 
-  
-    terrainIds.forEach(function (terrain) {
-        var calendarDiv = document.getElementById(`calendar-${terrain}`);
-        calendarDiv.style.display = (terrain === terrainIds[0]) ? 'block' : 'none';
+    terrainIds.forEach(function (terrain, index) {
+        const calendarDiv = document.getElementById(`calendar-${terrain}`);
+        calendarDiv.style.display = (index === 0) ? 'block' : 'none';
     });
 });

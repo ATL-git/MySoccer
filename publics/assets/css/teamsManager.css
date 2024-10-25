@@ -62,6 +62,10 @@ main {
     border-radius: 8px;
     font-size: 20px;
     cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+.addTeamButton:hover {
+    box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
 .noTeam {
@@ -158,7 +162,7 @@ main {
     color: white;
 }
 
-.containerModalDiv h2{
+.containerModalDiv h2 {
     margin-top: 30px;
 }
 
@@ -175,13 +179,14 @@ main {
     width: 80%;
 }
 
-.containerModalDiv form input{
+.containerModalDiv form input {
     padding: 10px;
     border: none;
     border-radius: 7px;
     margin-top: 7px;
 }
-.containerModalDiv form label{
+
+.containerModalDiv form label {
     font-size: 24px;
 }
 
@@ -195,12 +200,15 @@ main {
     margin-top: 60px;
     color: white;
     cursor: pointer;
+    transition: box-shadow 0.3s ease;
+}
+.containerModalDiv form button:hover {
+    box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
 /* teamsManagement */
 
-.teamsContain
-{
+.teamsContain {
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -222,9 +230,15 @@ main {
 
 
 .team button,
-.divBtn button{
+.divBtn button {
     color: white;
     font-size: 18px;
+    transition: box-shadow 0.3s ease;
+}
+
+.team button:hover,
+.divBtn button:hover {
+    box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
 .team {
@@ -246,10 +260,10 @@ main {
 .trait {
     background-color: white;
     width: 2px;
-   
+
 }
 
-.noPlayer{
+.noPlayer {
     margin-left: 50px;
 }
 
@@ -262,7 +276,13 @@ main {
     width: 100%;
     background-color: rgba(38, 97, 24, 1);
     cursor: pointer;
-    
+    transition: box-shadow 0.3s ease;
+
+}
+
+.addPlayer:hover,
+.divBtn button:hover {
+    box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
 .teamDelete {
@@ -273,17 +293,22 @@ main {
     border-radius: 8px;
     width: 90%;
     font-family: Arial, Helvetica, sans-serif;
+    transition: box-shadow 0.3s ease;
 }
 
-.divBtn{
+.teamDelete:hover {
+    box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
+}
+
+.divBtn {
     display: flex;
     flex-direction: column;
     gap: 30px;
     width: 80%;
     margin: auto;
-} 
+}
 
-.playerContain{
+.playerContain {
     padding-left: 50px;
     display: flex;
     justify-content: center;
@@ -292,17 +317,17 @@ main {
     gap: 20px;
 }
 
-.playerContain div p{
+.playerContain div p {
     margin: 0;
     padding: 0;
 }
 
 .playerBox {
-    background:linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
+    background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
     border: 1px solid white;
     border-radius: 8px;
     padding: 10px;
-    width: auto; 
+    width: auto;
     height: 48%;
     text-align: center;
     color: white;
@@ -315,7 +340,7 @@ main {
 
 
 .playerDelete {
-    padding: 10px;
+    padding: 7px;
     text-align: center;
     border: 1px solid white;
     background-color: red;
@@ -325,21 +350,26 @@ main {
     color: white;
     cursor: pointer;
     text-decoration: none;
+    transition: box-shadow 0.3s ease;
+}
+.playerDelete:hover{
+    box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
 
-
 @media (max-width: 730px) {
-    
+
     .addTeamButton {
         display: block;
         margin: 20px auto;
         width: 80%;
     }
+
     .teamsManagement h2 {
         text-align: center;
         font-size: 24px;
     }
+
     .teamContainer {
         width: 90%;
         margin: 0 auto 20px auto;
@@ -347,13 +377,15 @@ main {
         display: flex;
         flex-direction: column;
         align-items: center;
-        
+
     }
+
     .team p {
         text-align: center;
         font-size: 20px;
         margin-bottom: 10px;
     }
+
     .team {
         display: flex;
         flex-direction: column;
@@ -361,23 +393,28 @@ main {
         width: 100%;
         padding: 0px;
     }
-    .addPlayer, .teamDelete {
+
+    .addPlayer,
+    .teamDelete {
         width: 90%;
         margin: 5px 0;
         text-align: center;
     }
+
     .trait {
         width: 90%;
         height: 2px;
         background-color: white;
         margin: 10px auto;
     }
+
     .playerContain {
         display: grid;
         grid-template-columns: repeat(2, 1fr);
         gap: 10px;
         width: 100%;
     }
+
     .playerBox {
         width: 50%;
         height: auto;
@@ -387,7 +424,7 @@ main {
     /* Modal contenu */
 
     .containerModalDiv {
-        width: 80%;                  
+        width: 80%;
         margin: 0px;
         padding: 0px;
     }
