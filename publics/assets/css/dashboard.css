@@ -230,3 +230,9 @@
 
 
 }
+
+@media (max-width: 460px) {
+    .gallery-container p {
+        font-size: 14px;
+    }
+}
