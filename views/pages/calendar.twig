@@ -4,6 +4,11 @@
 	<link rel="stylesheet" href="/assets/css/calendar.css">
 {% endblock %}
 {% block main %}
+	{% if error %}
+		<div class="errorMessage">
+			<p>{{error.message}}</p>
+		</div>
+	{% endif %}
 	<div class="SelectTerrain">
 		<label for="terrain-select">Choisissez un terrain :</label>
 		<select id="terrain-select">

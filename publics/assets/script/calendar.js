@@ -165,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const calendarDiv = document.getElementById(`calendar-${terrain}`);
             if (terrain === selectedTerrain) {
                 calendarDiv.style.display = 'block';
-                calendars[terrain].updateSize(); // Met à jour la taille du calendrier visible
+                calendars[terrain].updateSize();
             } else {
                 calendarDiv.style.display = 'none';
             }
@@ -174,6 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     terrainIds.forEach(function (terrain, index) {
         const calendarDiv = document.getElementById(`calendar-${terrain}`);
-        calendarDiv.style.display = (index === 0) ? 'block' : 'none'; // Affiche le premier calendrier par défaut
+        calendarDiv.style.display = (index === 0) ? 'block' : 'none';
     });
 });
