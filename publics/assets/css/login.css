@@ -68,7 +68,6 @@ footer {
     border-radius: 10px;
     padding: 15px;
     width: 25%;
-    background: rgb(38, 97, 24);
     background: linear-gradient(214deg, rgba(38, 97, 24, 1) 0%, rgba(58, 146, 36, 0.896796218487395) 49%, rgba(79, 199, 49, 1) 100%);
     filter: drop-shadow(15px 15px 4px #0800008c);
 }
@@ -87,18 +86,15 @@ footer {
     flex-direction: column;
     font-size: 18px;
     margin: auto;
-
 }
 
 .loginContainer form input {
-
     margin-bottom: 20px;
     margin-top: 8px;
     padding: 8px;
     border-radius: 8px;
     border: none;
-
-
+    width: 100%;
 }
 
 .loginContainer form button {
@@ -113,13 +109,19 @@ footer {
     transition: box-shadow 0.3s ease;
 }
 
-.loginContainer form button:hover{
+.loginContainer form button:hover {
     box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
 .loginContainer p {
     text-align: center;
 }
+
+.LoginButton{
+    display: flex;
+    justify-content: center;
+}
+
 @media (max-width: 1060px) {
     .loginContainer {
         width: 40%;
@@ -132,8 +134,7 @@ footer {
     }
 
     footer {
-        font-size: 16px;
+        font-size: 14px;
     }
 
 }
-

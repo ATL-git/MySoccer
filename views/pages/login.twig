@@ -15,20 +15,24 @@
 
 	<div class="loginContainer">
 		<h2>Se connecter</h2>
-		<form action="/login" method="post">
-			<label for="mail">Email :<label>
-			<input type="email" id="mail" name="mail">
-			<label for="password">Password :</label>
-			<input type="password" id="password" name="password">
-			<button type="submit">Se connecter</button>
-		</form>
-		{% if error %}
-			<div class="errorMessage">
-				<p>{{error}}</p>
+		<div class="formContainer">
+			<form action="/login" method="post">
+				<label for="mail">Email :<label>
+						<input type="email" id="mail" name="mail">
+						<label for="password">Password :</label>
+						<input type="password" id="password" name="password">
+						<div class="LoginButton">
+							<button type="submit">Se connecter</button>
+						</div>
+					</form>
+				</div>
+				{% if error %}
+					<div class="errorMessage">
+						<p>{{error}}</p>
+					</div>
+				{% endif %}
+				<p>Pas encore inscrit ?
+					<a href="/register">Inscrivez-vous</a>
+				</p>
 			</div>
-		{% endif %}
-		<p>Pas encore inscrit ?
-			<a href="/register">Inscrivez-vous</a>
-		</p>
-	</div>
-{% endblock %}
+		{% endblock %}
