@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function loadReservations(terrain) {
-        fetch(`http://aurelien-maureau.ri7.tech:83/getReservations`)
+        fetch('http://aurelien-maureau.ri7.tech:83/getReservations')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Erreur réseau lors du chargement des réservations');
@@ -158,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function () {
             console.error('Erreur lors de la récupération du rôle de l\'utilisateur:', error);
         });
 
-  
     const terrainSelect = document.getElementById('terrain-select');
     terrainSelect.addEventListener('change', function () {
         const selectedTerrain = terrainSelect.value;
@@ -166,7 +165,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const calendarDiv = document.getElementById(`calendar-${terrain}`);
             if (terrain === selectedTerrain) {
                 calendarDiv.style.display = 'block';
-                calendars[terrain].updateSize();
+                calendars[terrain].updateSize(); // Met à jour la taille du calendrier visible
             } else {
                 calendarDiv.style.display = 'none';
             }
@@ -175,6 +174,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     terrainIds.forEach(function (terrain, index) {
         const calendarDiv = document.getElementById(`calendar-${terrain}`);
-        calendarDiv.style.display = (index === 0) ? 'block' : 'none';
+        calendarDiv.style.display = (index === 0) ? 'block' : 'none'; // Affiche le premier calendrier par défaut
     });
 });
