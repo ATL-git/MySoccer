@@ -1,7 +1,6 @@
 #calendars {
     display: flex;
     flex-wrap: wrap;
-    /* Permet aux calendriers de s'adapter sur plusieurs lignes si nécessaire */
     align-items: center;
     overflow: hidden;
 }
@@ -20,7 +19,6 @@
 .SelectTerrain {
     display: flex;
     flex-direction: column;
-    /* Changer l'orientation pour un meilleur affichage mobile */
     align-items: center;
     margin-top: 30px;
     font-size: 20px;
@@ -39,28 +37,19 @@
     height: 50px;
 }
 
-@media (max-width: 960px) {
+#responsivMessage{
+    display: none;
+}
+
+@media (max-width: 660px) {
     #calendars {
-        flex-direction: column;
-        /* Aligne les calendriers en colonne sur mobile */
-        align-items: stretch;
-        /* Permet au calendrier de prendre toute la largeur */
+        display: none;
     }
 
-    .calendar {
-        min-width: 100%;
-        /* Le calendrier occupe toute la largeur */
-        margin: 15px 0;
-        /* Ajustement des marges pour un meilleur espacement */
-    }
-
-    .SelectTerrain {
-        font-size: 18px;
-        /* Réduction de la taille de la police pour le sélecteur sur mobile */
-    }
-
-    #terrain-select {
-        font-size: 14px;
-        /* Réduction de la taille de la police pour le sélecteur */
+    #responsivMessage {
+        display: block; 
+        text-align: center; 
+        font-size: 18px; 
+        margin-top: 20px; 
     }
 }
