@@ -5,7 +5,6 @@ const session = require('express-session');
 const usersRouter = require("./routers/usersRouter");
 const teamsRouter = require("./routers/teamsRouter")
 const reservationRouter = require('./routers/reservationRouter');
-
 const app = express();
 
 app.use(express.static('./publics'));

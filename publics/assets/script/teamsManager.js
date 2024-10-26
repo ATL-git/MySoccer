@@ -1,17 +1,14 @@
 const modalBody = document.querySelector('.modal_body');
 
 function openModal() {
-
     document.querySelector('.overlay').style.display = 'block';
     document.querySelector('.modal').classList.add('modalOpen')
-
 }
 
 function closeModal() {
     document.querySelector('.overlay').style.display = 'none';
     document.querySelector('.modal').classList.remove('modalOpen')
 }
-
 
 function teamAddModal() {
     modalBody.innerHTML = "";
@@ -44,7 +41,6 @@ function teamAddModal() {
     openModal();
 }
 
-
 function addPlayer(teamId) {
     modalBody.innerHTML = "";
     let divPlayerAdd = document.createElement("div");
@@ -64,7 +60,6 @@ function addPlayer(teamId) {
     divBtn.appendChild(createPlayerBtn);
     createPlayerBtn.addEventListener('click', () => createPlayer(teamId));
     createPlayerBtn.textContent = "Crée un joueur";
-
     openModal()
 }
 

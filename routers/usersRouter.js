@@ -25,7 +25,6 @@ usersRouter.post('/register', async (req, res) => {
     }
 })
 
-
 usersRouter.get('/login', (req, res) => {
     res.render('pages/login.twig')
 })
@@ -56,8 +55,6 @@ usersRouter.get('/dashboard', (req, res) => {
         user : req.session.user
     })
 })
-
-
 
 usersRouter.get('/logout', (req, res) => {
     req.session.destroy()

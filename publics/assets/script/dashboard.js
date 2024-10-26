@@ -79,7 +79,6 @@ items.forEach((item, index) => {
         }
     
 
-
     item.addEventListener(events[deviceType].start, () => {
         filtre.classList.add("filtreImgOver");
         item.style.flex = "5";

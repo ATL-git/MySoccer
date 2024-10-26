@@ -34,22 +34,19 @@ reservationRouter.get('/getReservations', authGuard, async (req, res) => {
     try {
         const userId = req.session.user._id;
         const reservationUser = await reservationModel.find().populate('userId', 'name firstname mail role');
-
         const Reservations = reservationUser.map(reservation => {
             const isAdmin = reservation.userId.role === 'Admin';
             const isUser = reservation.userId._id.toString() === userId.toString();
-            const isCurrentUserAdmin = req.session.user.role === 'Admin';
 
-            // Définir la couleur selon le rôle de l'utilisateur et le propriétaire de la réservation
             let color;
             if (isAdmin) {
-                color = 'red'; // Les réservations Admin sont rouges pour tous
+                color = 'red';
             } else if (isUser) {
-                color = 'green'; // Les réservations de l'utilisateur courant sont vertes
+                color = 'green';
             } else {
-                color = 'blue'; // Les réservations d'autres utilisateurs sont bleues
+                color = 'blue'; 
             }
-
+            
             return {
                 id: reservation._id,
                 terrainId: reservation.terrainId,
@@ -85,7 +82,6 @@ reservationRouter.delete('/deleteReservation/:id', authGuard, async (req, res) =
 });
 
 reservationRouter.get('/getUser', authGuard, (req, res) => {
-
     const user = req.session.user;
     res.json({ user: user });
 });
