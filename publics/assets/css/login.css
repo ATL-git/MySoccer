@@ -16,6 +16,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     height: 100vh;
+    font-family: Arial, sans-serif;
 }
 
 main {
@@ -73,6 +74,7 @@ footer {
 }
 
 .loginContainer h2 {
+    font-family: 'Spinnaker', sans-serif;
     text-align: center;
     padding-bottom: 30px;
 
