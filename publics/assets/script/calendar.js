@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function deleteReservation(reservationId) {
-        fetch(`/${reservationId}`, {
+        fetch(`/deleteReservation/${reservationId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
