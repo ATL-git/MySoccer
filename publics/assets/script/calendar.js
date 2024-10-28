@@ -90,7 +90,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function loadReservations(terrain) {
-        fetch('http://aurelien-maureau.ri7.tech:83/getReservations')
+        fetch('/getReservations')
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Erreur réseau lors du chargement des réservations');
@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function deleteReservation(reservationId) {
-        fetch(`http://aurelien-maureau.ri7.tech:83/deleteReservation/${reservationId}`, {
+        fetch(`/${reservationId}`, {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', function () {
             });
     }
 
-    fetch('http://aurelien-maureau.ri7.tech:83/getUser')
+    fetch('/getUser')
         .then(response => {
             if (!response.ok) {
                 throw new Error('Erreur réseau lors de la récupération du rôle');
