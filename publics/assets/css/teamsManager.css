@@ -206,7 +206,6 @@ main {
     box-shadow: 0 4px 15px rgba(255, 254, 254, 0.5);
 }
 
-/* teamsManagement */
 
 .teamsContain {
     display: flex;
@@ -358,6 +357,10 @@ main {
 
 
 @media (max-width: 730px) {
+
+    .playerDelete{
+        font-size: 14px;
+    }
 
     .addTeamButton {
         display: block;
