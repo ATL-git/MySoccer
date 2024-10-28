@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         title: reservationTitle
                     };
                     if (confirm(`Voulez-vous vraiment réserver de ${info.start.toLocaleString()} à ${info.end.toLocaleString()} ?`)) {
-                        fetch('http://aurelien-maureau.ri7.tech:83/reserve', {
+                        fetch('/reserve', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
